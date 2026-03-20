@@ -16,7 +16,7 @@ import time
 
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import TwistStamped
 from sensor_msgs.msg import Imu
 
 from tb3_sensors_validation.result_utils import append_result
@@ -63,7 +63,7 @@ class ImuRotationResponse(Node):
         super().__init__('imu_rotation_response')
 
         # Publisher / subscriber
-        self.cmd_pub = self.create_publisher(Twist, CMD_VEL_TOPIC, 10)
+        self.cmd_pub = self.create_publisher(TwistStamped, CMD_VEL_TOPIC, 10)
         self.sub = self.create_subscription(Imu, IMU_TOPIC, self.imu_cb, 10)
 
         # Timing / state
@@ -106,11 +106,11 @@ class ImuRotationResponse(Node):
 
     def publish_cmd(self, linear_x=0.0, angular_z=0.0):
         """
-        Publish a Twist command.
+        Publish a TwistStamped command.
         """
-        cmd = Twist()
-        cmd.linear.x = linear_x
-        cmd.angular.z = angular_z
+        cmd = TwistStamped()
+        cmd.twist.linear.x = linear_x
+        cmd.twist.angular.z = angular_z
         self.cmd_pub.publish(cmd)
 
     def stop_robot(self):

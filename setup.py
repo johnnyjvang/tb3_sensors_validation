@@ -27,17 +27,25 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            # Message Rate Script
             'message_rate_check = tb3_sensors_validation.message_rate_check:main',
+            # ODOM Scripts
             'odom_stationary_drift = tb3_sensors_validation.odom_stationary_drift:main',
             'odom_forward_accuracy = tb3_sensors_validation.odom_forward_accuracy:main',
             'odom_backward_accuracy = tb3_sensors_validation.odom_backward_accuracy:main',
             'odom_rotation_accuracy = tb3_sensors_validation.odom_rotation_accuracy:main',
             'odom_out_and_back = tb3_sensors_validation.odom_out_and_back:main',
+            # IMU Scripts
             'imu_gyro_bias = tb3_sensors_validation.imu_gyro_bias:main',
             'imu_accel_noise = tb3_sensors_validation.imu_accel_noise:main',
             'imu_yaw_drift = tb3_sensors_validation.imu_yaw_drift:main',
             'imu_rotation_response = tb3_sensors_validation.imu_rotation_response:main',
             'imu_odom_agreement = tb3_sensors_validation.imu_odom_agreement:main',
+            # LIDAR Scripts
+            'lidar_valid_ranges = tb3_sensors_validation.lidar_valid_ranges:main',
+            'lidar_stationary_noise = tb3_sensors_validation.lidar_stationary_noise:main',
+            'lidar_front_obstacle_accuracy = tb3_sensors_validation.lidar_front_obstacle_accuracy:main',
+            'lidar_nearby_object_stability = tb3_sensors_validation.lidar_nearby_object_stability:main',
             # Added to print and reset json output
             'reset_results = tb3_sensors_validation.reset_results:main',
             'summary_report = tb3_sensors_validation.summary_report:main',

@@ -17,7 +17,7 @@ import time
 
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import TwistStamped
 from sensor_msgs.msg import Imu
 from nav_msgs.msg import Odometry
 
@@ -66,7 +66,7 @@ class ImuOdomAgreement(Node):
         super().__init__('imu_odom_agreement')
 
         # Publisher / subscribers
-        self.cmd_pub = self.create_publisher(Twist, CMD_VEL_TOPIC, 10)
+        self.cmd_pub = self.create_publisher(TwistStamped, CMD_VEL_TOPIC, 10)
         self.imu_sub = self.create_subscription(Imu, IMU_TOPIC, self.imu_cb, 10)
         self.odom_sub = self.create_subscription(Odometry, ODOM_TOPIC, self.odom_cb, 10)
 
@@ -131,11 +131,11 @@ class ImuOdomAgreement(Node):
 
     def publish_cmd(self, linear_x=0.0, angular_z=0.0):
         """
-        Publish a Twist command.
+        Publish a TwistStamped command.
         """
-        cmd = Twist()
-        cmd.linear.x = linear_x
-        cmd.angular.z = angular_z
+        cmd = TwistStamped()
+        cmd.twist.linear.x = linear_x
+        cmd.twist.angular.z = angular_z
         self.cmd_pub.publish(cmd)
 
     def stop_robot(self):
